@@ -10,26 +10,41 @@ HPO_dbInfo <- function() dbInfo(datacache)
 
 .onLoad <- function(libname, pkgname)
 {
-    dbfile <- system.file("extdata", "HPO.sqlite", package=pkgname,
-        lib.loc=libname)
+    ## To avoid error reason: this db is of type HPODb 
+    ## but this is not a defined class
+    # 
+    # ah <- suppressMessages(AnnotationHub())
+    ah <- AnnotationHub()
+    # Modify the number after waiting for data to be received
+    txdb <- ah[["AH111553", verbose=FALSE]] 
+    # dbfile <- txdb$conn@dbname
+    dbfile <- txdb
+    HPODb <- setRefClass("HPODb", contains="AnnotationDb")
+    txdb <- loadDb(dbfile, packageName=pkgname)
+
+    ## To avoid error reason: replacement has 70029 rows, data has 0
+    # save(txdb, file = "txdb.Rdata")
+    # on.exit(file.remove("txdb.Rdata"))
+    ##############
+
     assign("dbfile", dbfile, envir=datacache)
     dbconn <- dbFileConnect(dbfile)
     assign("dbconn", dbconn, envir=datacache)
 
-    HPODb <- setRefClass("HPODb", contains="GODb")
+    ## To avoid error reason: replacement has 70029 rows, data has 0
+    # HPODb <- setRefClass("HPODb", contains="AnnotationDb")
+    ##################
     ## Create the OrgDb object
-    sPkgname <- sub(".db$","",pkgname)
-    txdb <- loadDb(system.file("extdata", paste(sPkgname,
-        ".sqlite",sep=""), package=pkgname, lib.loc=libname),
-        packageName=pkgname)
-    dbObjectName <- getFromNamespace("dbObjectName", "AnnotationDbi")
-    dbNewname <- dbObjectName(pkgname,"HPODb")
+    sPkgname <- sub(".db$","",pkgname) 
+    # dbObjectName <- getFromNamespace("dbObjectName", "AnnotationDbi")
+    # dbNewname <- dbObjectName(pkgname,"HPODb")
+    dbNewname <- pkgname
     ns <- asNamespace(pkgname)
     assign(dbNewname, txdb, envir=ns)
     namespaceExport(ns, dbNewname)
 
     ## Create the AnnObj instances
-    ann_objs <- createAnnObjs.HPO_DB("HPO", "HPO", dbconn, datacache)
+    ann_objs <- createAnnObjs.HPO_DB(sPkgname, sPkgname, dbconn, datacache)
     mergeToNamespaceAndExport(ann_objs, pkgname)
 }
 
