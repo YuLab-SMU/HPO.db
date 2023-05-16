@@ -5,7 +5,10 @@ dbQuery <- getFromNamespace("dbQuery", "AnnotationDbi")
 setMethod("keys", "HPODb",
     function(x, keytype, ...){
         if(missing(keytype)) keytype <- "hpoid"
-        toTable(HPOTERM)[, keytype]
+        # toTable(HPOTERM)[, keytype]
+        sql_key <- paste("SELECT", keytype, "FROM do_term")
+        hpokeys <- dbQuery(dbconn(x), sql_key)[, 1]
+        hpokeys
     }
 )
 

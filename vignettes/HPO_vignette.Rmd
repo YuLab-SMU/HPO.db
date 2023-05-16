@@ -11,16 +11,11 @@ output:
   BiocStyle::html_document:
     toc: yes
     toc_float: yes
-vignette: "%\\VignetteIndexEntry{MPO_vignette} %\\VignetteEngine{knitr::rmarkdown}
-  %\\VignetteEncoding{UTF-8}\n"
+vignette: >
+  %\VignetteIndexEntry{HPO_vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-    collapse = TRUE,
-    comment = "#>"
-)
-```
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -28,6 +23,12 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
+
+```{r setup}
+library(HPO.db)
+```
+
+
 
 
 ## Introduction
@@ -42,11 +43,6 @@ Bioconductor package 'MPO.db' to get the relationship(such as parent and child)
 between MPO terms. But `MPO.db`  hasn't been updated for years, and a lot of 
 semantic information is [missing](https://github.com/YuLab-SMU/MPOSE/issues/57). 
 So we developed the new package `HPO.db` for Human Human Phenotype Ontology annotation.
-
-
-```{r setup}
-library(HPO.db)
-```
 
 ## Overview
 
@@ -192,3 +188,4 @@ for the vignette.
 ```{r}
 sessionInfo()
 ```
+
