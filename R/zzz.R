@@ -15,8 +15,7 @@ HPO_dbInfo <- function() dbInfo(datacache)
     # 
     # ah <- suppressMessages(AnnotationHub())
     ah <- AnnotationHub()
-    # Modify the number after waiting for data to be received
-    txdb <- ah[["AH111553", verbose=FALSE]] 
+    txdb <- ah[["AH111587", verbose=FALSE]] 
     # dbfile <- txdb$conn@dbname
     dbfile <- txdb
     HPODb <- setRefClass("HPODb", contains="AnnotationDb")

@@ -7,7 +7,7 @@ meta <- data.frame(
          "Human phenotype - mouse phenotype association data",
          "Human phenotype - human disease association data"
      ),
-     BiocVersion = "3.17",
+     BiocVersion = "3.18",
      Genome = NA,
      SourceType = "Multiple",
      SourceUrl = paste("https://hpo.jax.org/app/data/ontology", 
