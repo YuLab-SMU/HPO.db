@@ -1,4 +1,4 @@
-test_that("HPOANCESTOR", {
-    aa <- length(as.list(HPOANCESTOR))
+test_that("keys", {
+    aa <- length(keys(HPO.db))
     expect_true(aa > 0)
 })

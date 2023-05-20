@@ -21,6 +21,17 @@ This data set describes associations between HPO
     xx <- as.list(HPOCHILDREN)
 }
 
+\value{
+    \code{HPO_dbconn}: a DBIConnection object representing an
+    open connection to the package annotation DB.
+
+    \code{HPO_dbfile}: a character string with the path to the
+    package annotation DB.
+
+    \code{HPO_dbschema}: none (invisible \code{NULL}).
+
+    \code{HPO_dbInfo}: none (invisible \code{NULL}).
+}
 
 \references{
 \url{https://hpo.jax.org/app/data/ontology} 

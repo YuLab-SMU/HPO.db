@@ -1,7 +1,7 @@
 Package: HPO.db
 Type: Package
 Title: A set of annotation maps describing the entire Human Phenotype Ontology
-Version: 0.99.0
+Version: 0.99.1
 Authors@R: c(
       person(given = "Erqiang", family = "Hu", email = "13766876214@163.com", role  = c("aut", "cre"), comment = c(ORCID = "0000-0002-1798-7513"))
       )
@@ -11,7 +11,7 @@ Description: A set of annotation maps describing the entire Human Phenotype Onto
     https://hpo.jax.org/app/data/ontology.
 License: Artistic-2.0
 BugReports: https://github.com/YuLab-SMU/HPO.db/issues
-biocViews: AnnotationData, FunctionalAnnotation
+biocViews: AnnotationData, FunctionalAnnotation, AnnotationHub
 Encoding: UTF-8
 LazyData: false
 RoxygenNote: 7.2.3

@@ -11,16 +11,11 @@ output:
   BiocStyle::html_document:
     toc: yes
     toc_float: yes
-vignette: "%\\VignetteIndexEntry{MPO_vignette} %\\VignetteEngine{knitr::rmarkdown}
-  %\\VignetteEncoding{UTF-8}\n"
+vignette: >
+  %\VignetteIndexEntry{HPO_vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-    collapse = TRUE,
-    comment = "#>"
-)
-```
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -29,6 +24,12 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{r setup}
+library(HPO.db)
+```
+
+
+
 
 ## Introduction
 Human Phenotype Ontology (HPO) was developed to create a consistent description of gene 
@@ -36,17 +37,12 @@ products with disease perspectives, and is essential for supporting functional
 genomics in disease context. Accurate disease descriptions can discover new 
 relationships between genes and disease, and new functions for previous 
 uncharacteried genes and alleles.We have developed the 
-[MPOSE](https://bioconductor.org/packages/MPOSE/) package for semantic 
-similarity analysis and disease enrichment analysis, and `MPOSE` import an 
+[DOSE](https://bioconductor.org/packages/DOSE/) package for semantic 
+similarity analysis and disease enrichment analysis, and `DOSE` import an 
 Bioconductor package 'MPO.db' to get the relationship(such as parent and child)
 between MPO terms. But `MPO.db`  hasn't been updated for years, and a lot of 
-semantic information is [missing](https://github.com/YuLab-SMU/MPOSE/issues/57). 
+semantic information is [missing](https://github.com/YuLab-SMU/DOSE/issues/57). 
 So we developed the new package `HPO.db` for Human Human Phenotype Ontology annotation.
-
-
-```{r setup}
-library(HPO.db)
-```
 
 ## Overview
 
@@ -62,16 +58,16 @@ ls("package:HPO.db")
 packageVersion("HPO.db")
 ```
 
-You can use `help` function to get their documents: `help(MPOOFFSPRING)`
+You can use `help` function to get their documents: `help(HPOOFFSPRING)`
 ```{r}
 toTable(HPOmetadata)
 HPOMAPCOUNTS
 ```
 
 
-## Fetch whole MPO terms
+## Fetch whole HPO terms
 
-In HPO.db, `HPOTERM` represet the whole MPO terms and their names. The users can 
+In HPO.db, `HPOTERM` represet the whole HPO terms and their names. The users can 
 also get their aliases and synonyms from `HPOALIAS` and `HPOSYNONYM`, 
 respectively.
 
@@ -101,15 +97,15 @@ dosynonym[['HP:0000006']]
 ```
 
 
-## Fetch the relationship between MPO terms
+## Fetch the relationship between HPO terms
 Similar to `HPO.db`, we provide four Bimap objects to represent relationship
-between MPO terms: HPOANCESTOR,HPOPARENTS,HPOOFFSPRING, and HPOCHILDREN.
+between HPO terms: HPOANCESTOR,HPOPARENTS,HPOOFFSPRING, and HPOCHILDREN.
 
 ### HPOANCESTOR
-HPOANCESTOR describes the association between MPO terms and their ancestral 
+HPOANCESTOR describes the association between HPO terms and their ancestral 
 terms based on a directed acyclic graph (DAG) defined by the Human Phenotype Ontology.
 We can use `toTable` function in `AnnotationDbi` package to get a two-column 
-data.frame: the first column means the MPO term ids, and the second column means 
+data.frame: the first column means the HPO term ids, and the second column means 
 their ancestor terms.
 ```{r}
 anc_table <- toTable(HPOANCESTOR)
@@ -124,9 +120,9 @@ anc_list[["HP:0000006"]]
 
 
 ### HPOPARENTS
-HPOPARENTS describes the association between MPO terms and their direct parent 
+HPOPARENTS describes the association between HPO terms and their direct parent 
 terms based on DAG. We can use `toTable` function in `AnnotationDbi` package to 
-get a two-column data.frame: the first column means the MPO term ids, and the 
+get a two-column data.frame: the first column means the HPO term ids, and the 
 second column means their parent terms.
 ```{r}
 parent_table <- toTable(HPOPARENTS)
@@ -141,7 +137,7 @@ parent_list[["HP:0000006"]]
 ```
 
 ###  HPOOFFSPRING
-HPOPARENTS describes the association between MPO terms and their offspring  
+HPOPARENTS describes the association between HPO terms and their offspring  
 terms based on DAG. it's the exact opposite of `HPOANCESTOR`, 
 whose usage is similar to it.
 
@@ -152,7 +148,7 @@ off_list[["HP:0000002"]]
 ```
 
 ### HPOCHILDREN
-HPOCHILDREN describes the association between MPO terms and their direct 
+HPOCHILDREN describes the association between HPO terms and their direct 
 children terms based on DAG. it's the exact opposite of `HPOPARENTS`, 
 whose usage is similar to it.
 
@@ -192,3 +188,4 @@ for the vignette.
 ```{r}
 sessionInfo()
 ```
+
