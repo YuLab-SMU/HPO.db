@@ -1,14 +1,21 @@
 Package: HPO.db
 Type: Package
 Title: A set of annotation maps describing the entire Human Phenotype Ontology
-Version: 0.99.1
+Version: 0.99.2
 Authors@R: c(
       person(given = "Erqiang", family = "Hu", email = "13766876214@163.com", role  = c("aut", "cre"), comment = c(ORCID = "0000-0002-1798-7513"))
       )
-Description: A set of annotation maps describing the entire Human Phenotype Ontology
-    assembled using data from HPO.
-    Its annotation data comes from 
-    https://hpo.jax.org/app/data/ontology.
+Description: Human Phenotype Ontology (HPO) was developed to create a consistent description of gene 
+    products with disease perspectives, and is essential for supporting functional 
+    genomics in disease context. Accurate disease descriptions can discover new 
+    relationships between genes and disease, and new functions for previous 
+    uncharacteried genes and alleles.We have developed the 
+    [DOSE](https://bioconductor.org/packages/DOSE/) package for semantic 
+    similarity analysis and disease enrichment analysis, and `DOSE` import an 
+    Bioconductor package 'DO.db' to get the relationship(such as parent and child)
+    between MPO terms. But `DO.db`  hasn't been updated for years, and a lot of 
+    semantic information is [missing](https://github.com/YuLab-SMU/DOSE/issues/57). 
+    So we developed the new package `HPO.db` for Human Human Phenotype Ontology annotation.
 License: Artistic-2.0
 BugReports: https://github.com/YuLab-SMU/HPO.db/issues
 biocViews: AnnotationData, FunctionalAnnotation, AnnotationHub

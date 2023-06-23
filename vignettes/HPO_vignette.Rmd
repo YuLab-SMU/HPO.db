@@ -3,8 +3,8 @@ title: "HPO_vignette"
 author:
 - name: Erqiang Hu
   email: 13766876214@163.com
-  affiliation: Department of Bioinformatics, School of Basic Medical Sciences, Southern
-    Medical University
+  affiliation: Department of Bioinformatics, School of Basic Medical Sciences, 
+    Southern Medical University
 date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette: default
@@ -32,17 +32,30 @@ library(HPO.db)
 
 
 ## Introduction
-Human Phenotype Ontology (HPO) was developed to create a consistent description of gene 
-products with disease perspectives, and is essential for supporting functional 
+Human Phenotype Ontology (HPO) was developed to create a consistent description 
+of gene products with disease perspectives,
+and is essential for supporting functional 
 genomics in disease context. Accurate disease descriptions can discover new 
 relationships between genes and disease, and new functions for previous 
 uncharacteried genes and alleles.We have developed the 
 [DOSE](https://bioconductor.org/packages/DOSE/) package for semantic 
 similarity analysis and disease enrichment analysis, and `DOSE` import an 
-Bioconductor package 'MPO.db' to get the relationship(such as parent and child)
-between MPO terms. But `MPO.db`  hasn't been updated for years, and a lot of 
+Bioconductor package 'DO.db' to get the relationship(such as parent and child)
+between DO terms. But `DO.db`  hasn't been updated for years, and a lot of 
 semantic information is [missing](https://github.com/YuLab-SMU/DOSE/issues/57). 
-So we developed the new package `HPO.db` for Human Human Phenotype Ontology annotation.
+So we developed the new package `HPO.db` for Human Human Phenotype Ontology 
+annotation.
+
+##  :hammer: Installation
+
+The released version from `Bioconductor`
+
+```{r eval=FALSE}
+if (!requireNamespace("BiocManager", quietly=TRUE))
+    install.packages("BiocManager")
+## BiocManager::install("BiocUpgrade") ## you may need this
+BiocManager::install("HPO.db")
+```
 
 ## Overview
 
@@ -103,7 +116,8 @@ between HPO terms: HPOANCESTOR,HPOPARENTS,HPOOFFSPRING, and HPOCHILDREN.
 
 ### HPOANCESTOR
 HPOANCESTOR describes the association between HPO terms and their ancestral 
-terms based on a directed acyclic graph (DAG) defined by the Human Phenotype Ontology.
+terms based on a directed acyclic graph (DAG) defined by the Human Phenotype
+Ontology.
 We can use `toTable` function in `AnnotationDbi` package to get a two-column 
 data.frame: the first column means the HPO term ids, and the second column means 
 their ancestor terms.

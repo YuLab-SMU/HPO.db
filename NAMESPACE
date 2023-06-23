@@ -1,5 +1,5 @@
 importFrom(utils, getFromNamespace)
-importFrom("utils", packageVersion)
+importFrom(utils, packageVersion)
 import(methods)
 import(DBI)
 import(AnnotationDbi)
